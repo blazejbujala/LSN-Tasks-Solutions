@@ -11,10 +11,7 @@ public class Task2 {
     public List<Integer> readUserInput() throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String[] stringsList;
-        List<Integer> integerList;
-        stringsList = reader.readLine().split(" ");
-        integerList = Arrays.stream(stringsList)
+        List<Integer> integerList = Arrays.stream(reader.readLine().split(" "))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         return integerList;
@@ -22,23 +19,20 @@ public class Task2 {
 
     public void printPairs(List<Integer> list, int sum) {
         Map<Integer, Integer> mapOfInteger = new HashMap<>();
-        int numberOfOccurrences;
         for (int number : list) {
+            int numberOfOccurrences = 1;
             if (mapOfInteger
                     .containsKey(number)) {
                 numberOfOccurrences = mapOfInteger.get(number) + 1;
                 mapOfInteger.put(number, numberOfOccurrences);
-            } else {
-                numberOfOccurrences = 1;
-                mapOfInteger.put(number, numberOfOccurrences);
             }
+            mapOfInteger.put(number, numberOfOccurrences);
+
         }
-        for (int i = 0; i <= 6; i++) {
-            if (mapOfInteger.containsKey(sum - i)) {
-                int secondNumber = sum - i;
-                for (int j = 0; j < mapOfInteger.get(i) * mapOfInteger.get(secondNumber); j++)
-                    System.out.println(i + " " + secondNumber);
-            }
-        }
+        mapOfInteger.forEach((integer, occurrences) -> {
+            if ((integer <= sum / 2) && mapOfInteger.containsKey(sum - integer))
+                for (int j = 0; j < occurrences * mapOfInteger.get(sum - integer); j++)
+                    System.out.println(integer + " " + (sum - integer));
+        });
     }
 }
