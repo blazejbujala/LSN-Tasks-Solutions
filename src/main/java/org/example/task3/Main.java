@@ -1,21 +1,21 @@
 package org.example.task3;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Task3 task3 = new Task3();
-        int numberOfIterations = task3.scanNumberOfIterations();
-        List<Set<Integer>> listOfPairs = task3.getListOfPairs(numberOfIterations);
-        int numberOfGraphs = task3.calculateNumberOfGraphs(listOfPairs);
-        System.out.print("Number of graphs: " + numberOfGraphs);
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        int numberOfAdj = scan.nextInt();
 
-        Set<Integer> setOfNumbers = new HashSet<>();
-        setOfNumbers.add(1);
-        setOfNumbers.add(2);
+        Task3 task3 = new Task3(numberOfAdj+10);
 
+        for (int i = 0; i < numberOfAdj; i++) {
+            task3.addEdge(scan.nextInt(), scan.nextInt());
+        }
+        System.out.println("Number of graphs: ");
+        task3.connectedComponents();
     }
+
 }
