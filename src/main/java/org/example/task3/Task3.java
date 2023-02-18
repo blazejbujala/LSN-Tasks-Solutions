@@ -9,8 +9,7 @@ class Task3 {
         stack.push(n);
         int a = 0;
         while (!stack.empty()) {
-            n = stack.peek();
-            stack.pop();
+            n = stack.pop();
             visited.add(n);
 
             for (Integer neighbor : adj.get(n)) {
