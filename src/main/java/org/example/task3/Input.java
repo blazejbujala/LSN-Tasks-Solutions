@@ -11,7 +11,7 @@ public class Input {
         int numberOfAdj = scan.nextInt();
 
         for (int i = 0; i < numberOfAdj; i++) {
-            addEdge(adj, scan.nextInt(), scan.nextInt());
+            addEdges(adj, scan.nextInt(), scan.nextInt());
 
         }
         return adj;
