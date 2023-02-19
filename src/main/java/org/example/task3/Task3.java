@@ -4,15 +4,14 @@ import java.util.*;
 
 class Task3 {
 
-    void DFS(int n, Set visited, Map<Integer, List<Integer>> adj) {
+    void DFS(int vertex, Set<Integer> visited, Map<Integer, Set<Integer>> adj) {
         Stack<Integer> stack = new Stack<>();
-        stack.push(n);
-        int a = 0;
+        stack.push(vertex);
         while (!stack.empty()) {
-            n = stack.pop();
-            visited.add(n);
+            vertex = stack.pop();
+            visited.add(vertex);
 
-            for (Integer neighbor : adj.get(n)) {
+            for (Integer neighbor : adj.get(vertex)) {
                 if (!visited.contains(neighbor)) {
                     stack.push(neighbor);
                 }
@@ -20,7 +19,7 @@ class Task3 {
         }
     }
 
-    void connectedComponents(Map<Integer, List<Integer>> adj) {
+    void connectedComponents(Map<Integer, Set<Integer>> adj) {
         Set<Integer> visited = new HashSet<>();
         int counter = 0;
 

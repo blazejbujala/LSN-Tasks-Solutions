@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Input {
 
-    public Map<Integer, List<Integer>> readUserInput() {
-        Map<Integer, List<Integer>> adj = new HashMap<>();
+    public Map<Integer, Set<Integer>> readUserInput() {
+        Map<Integer, Set<Integer>> adj = new HashMap<>();
 
         Scanner scan = new Scanner(System.in);
         int numberOfAdj = scan.nextInt();
@@ -17,22 +17,18 @@ public class Input {
         return adj;
     }
 
-    void addEdge(Map<Integer, List<Integer>> adj, int v, int w) {
+    void addEdges(Map<Integer, Set<Integer>> adj, int v, int w) {
+        addEdge(adj, v, w);
+        addEdge(adj, w, v);
+    }
 
-        if (adj.containsKey(v)) {
-            adj.get(v).add(w);
-
-        } else {
-            adj.put(v, new ArrayList<Integer>());
-            adj.get(v).add(w);
-        }
-
-        if (adj.containsKey(w)) {
-            adj.get(w).add(v);
+    void addEdge(Map<Integer, Set<Integer>> adj, int firstVertex, int secondVertex) {
+        if (adj.containsKey(firstVertex)) {
+            adj.get(firstVertex).add(secondVertex);
 
         } else {
-            adj.put(w, new ArrayList<Integer>());
-            adj.get(w).add(v);
+            adj.put(firstVertex, new HashSet<>());
+            adj.get(firstVertex).add(secondVertex);
         }
     }
 }
