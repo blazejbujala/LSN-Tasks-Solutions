@@ -43,11 +43,10 @@ After user gives all pairs, code gives information how many separated graphs are
 
 To use please call methods from Task3 package in task3/Main class / main methods as per below examples :
 
-public static void main(String[] args) {
+public static void main(String args[]) {
 
+        Input input = new Input();
         Task3 task3 = new Task3();
-        int numberOfIterations = task3.scanNumberOfIterations();
-        List<Set<Integer>> listOfPairs = task3.getListOfPairs(numberOfIterations);
-        int numberOfGraphs = task3.calculateNumberOfGraphs(listOfPairs);
-        System.out.print("Number of graphs: " + numberOfGraphs);
-    }
+
+        task3.connectedComponents(input.readUserInput());
+}
